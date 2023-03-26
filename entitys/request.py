@@ -7,6 +7,10 @@ class Request:
         self.from_, self.to_, self.amount_, self.product_ = self._parse_request(request_str)
 
     def _parse_request(self, request_str):
-        _, amount, product, _, from_, _, to = request_str.split()
-        amount = int(amount)
-        return from_, to, amount, product
+        try:
+            _, amount, product, _, from_, _, to = request_str.split()
+            amount = int(amount)
+            return from_, to, amount, product
+        except (ValueError, TypeError):
+            print('Не верный формат ввода запроса')
+            return

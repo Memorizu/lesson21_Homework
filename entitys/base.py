@@ -16,13 +16,13 @@ class Storage(ABC):
             return
 
     def remove(self, title, quantity):
-        if not self._check_item(title=title):
+        if not self.check_item(title=title):
             return 'Такого товара нет'
         if self._items[title] > quantity:
             self._items[title] = self._items.get(title, 0) - quantity
             self._capacity += quantity
         else:
-            return f'Не достаточно количества на складе. Доступно {self._items[title]}.'
+            return f'Не достаточно количества. Доступно {self._items[title]}.'
 
     def get_free_space(self):
         return self._capacity
@@ -30,9 +30,23 @@ class Storage(ABC):
     def get_items(self):
         return self._items
 
+    def get_item_count(self, title):
+        return self._items[title]
+
     def get_unique_item_count(self):
         return len(set(self._items.keys()))
 
-    def _check_item(self, title):
+    def check_item(self, title):
         return title in self._items
 
+    @property
+    def output(self):
+        return '\n'.join([f'{v} {k}' for k, v in self._items.items()])
+
+
+store = Storage(100)
+store.add('печеньки', 10)
+store.add('dfgd', 10)
+store.add('печенdfgdfgьки', 10)
+# print(store.get_item_count('печеньки'))
+# print(store.output)
