@@ -1,4 +1,3 @@
-
 from entitys.request import Request
 from entitys.shop import Shop
 from entitys.store import Store
@@ -28,9 +27,9 @@ def main():
                     shop.add(request.product_, request.amount_)
                     print(f'Курьер доставил {request.amount_} {request.product_} в магазин')
                     print(f'На складе хранится: \n\n{store.output}')
-                    print(f'В магазине хранится: \n\n{shop.output}')
+                    print(f'В магазине хранится: \n\n{shop.output}\n')
                 else:
-                    print('Не достаточно количества на складе')
+                    print(f'Не достаточно количества на складе. Доступно {store.get_item_count(request.product_)}')
             else:
                 print('Такого товара нет на складе')
         if request.from_ == 'магазин' and request.to_ == 'склад':
@@ -41,11 +40,11 @@ def main():
                     store.add(request.product_, request.amount_)
                     print(f'Курьер доставил {request.product_} {request.amount_} на склад')
                     print(f'На складе хранится: \n\n{store.output}')
-                    print(f'В магазине хранится: \n\n{shop.output}')
+                    print(f'В магазине хранится: \n\n{shop.output}\n')
                 else:
-                    print('Недостаточно количества в магазине')
+                    print(f'Недостаточно количества в магазине. Доступно {shop.get_item_count(request.product_)}')
             else:
-                print('Такого товара нет в магазине')
+                print('Такого товара нет в магазине.')
 
 
 if __name__ == "__main__":

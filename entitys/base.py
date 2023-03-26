@@ -42,11 +42,3 @@ class Storage(ABC):
     @property
     def output(self):
         return '\n'.join([f'{v} {k}' for k, v in self._items.items()])
-
-
-store = Storage(100)
-store.add('печеньки', 10)
-store.add('dfgd', 10)
-store.add('печенdfgdfgьки', 10)
-# print(store.get_item_count('печеньки'))
-# print(store.output)

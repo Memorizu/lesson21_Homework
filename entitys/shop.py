@@ -18,14 +18,3 @@ class Shop(Storage):
         elif title not in self._items:
             return'Такого товара нет'
         super().remove(title=title, quantity=quantity)
-
-
-
-# shop = Shop()
-# shop.add('матрешка', 3)
-# shop.add('vanilla', 4)
-# shop.add('cup', 2)
-# shop.remove('cup', 1)
-# print(shop.get_items())
-# print(shop.get_unique_item_count())
-

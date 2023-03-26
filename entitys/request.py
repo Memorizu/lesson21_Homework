@@ -1,10 +1,13 @@
 
-
 class Request:
 
     def __init__(self, storages: list, request_str: str):
-        self.storages = storages
-        self.from_, self.to_, self.amount_, self.product_ = self._parse_request(request_str)
+        try:
+            self.storages = storages
+            self.from_, self.to_, self.amount_, self.product_ = self._parse_request(request_str)
+        except Exception as e:
+            print(f'Неверный формат ввода {e}')
+            self.from_, self.to_, self.amount_, self.product_ = None, None, None, None
 
     def _parse_request(self, request_str):
         try:
@@ -13,4 +16,4 @@ class Request:
             return from_, to, amount, product
         except (ValueError, TypeError):
             print('Не верный формат ввода запроса')
-            return
+            return None, None, None, None
